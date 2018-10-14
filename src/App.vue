@@ -1,28 +1,50 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to bloddy maze"/>
+  <div>
+    <PathSelector/>
+    <component
+      id="full_div"
+      :is="currentView"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Map from './components/Map';
+import PathSelector from './components/PathSelector'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    Map,
+    PathSelector
+  },
+  data () {
+    return {
+      currentView: 'Map'
+    };
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.leaflet-fake-icon-image-2x {
+  background-image: url(../node_modules/leaflet/dist/images/marker-icon-2x.png);
+}
+.leaflet-fake-icon-shadow {
+  background-image: url(../node_modules/leaflet/dist/images/marker-shadow.png);
+}
+@import "../node_modules/leaflet/dist/leaflet.css";
+body {
+  margin: 0px;
+  font-family: Helvetica, Verdana, sans-serif;
+}
+#full_div {
+  position: absolute;
+  overflow-x: auto;
+  top: 0;
+  right: 0;
+  left: 30%;
+  bottom: 0;
+  padding-left: 8px;
+  border-left: 1px solid #ccc;
 }
 </style>
